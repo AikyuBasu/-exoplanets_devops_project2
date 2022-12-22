@@ -7,7 +7,7 @@ test('pipeline-test', () => {
 test('no lowercase letter allowed for exoplanet uniqueName (only uppercase)', () => {
     expect(
         exoplanets.save({
-            uniqueName: "trappist",
+            uniqueName: "TRAPPISt",
             hClass: "test",
             discoveryYear: "2010",
         })
