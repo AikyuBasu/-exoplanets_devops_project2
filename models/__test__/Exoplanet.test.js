@@ -13,4 +13,14 @@ test('empty uniqueName', () => {
 
         })
     ).toBe(false);
-})
+});
+
+test('no special charactere are allowed', () => {
+    expect(
+        exoplanets.save({
+            uniqueName: 'MADA./-',
+            hClass: 'test',
+            discoveryYear: '1000',
+        })
+    ).toBe(false);
+});
