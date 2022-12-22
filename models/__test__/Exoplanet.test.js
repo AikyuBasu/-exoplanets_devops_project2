@@ -6,14 +6,16 @@ test("pipeline-test", () => {
 
 describe("Exoplanet add tests", () => {
     it('should fail as the uniqueName is empty', () => {  
-        expect(
-            exoplanets.save({
-                uniqueName: '',
-                hClass: 'test',
-                discoveryYear: '1000',
-
-            })
-        ).toBe(false);
+        //arrange
+        const exoplanet = {
+            uniqueName: '',
+            hClass: 'test',
+            discoveryYear: '1000', 
+        };
+        //act
+        const result = exoplanets.save(exoplanet);
+        //assert 
+        expect(result).toBe(false);
     });
     
     it("should fail as the exoplanet name contains at least one lowercase letter", () => {
