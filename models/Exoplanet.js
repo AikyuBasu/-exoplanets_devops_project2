@@ -7,7 +7,9 @@ const exoplanetsTable = [
 module.exports.list = () => exoplanetsTable;
 
 module.exports.save = (data) => {
+    if(data.uniqueName.match(/[`!@#$%^&*()_+\=\[\]{};':"\\|,<>\/?~]/)) return false;
     exoplanetsTable.push(data);
+    return true;
 };
 
 module.exports.search = (uniqueName) => {
