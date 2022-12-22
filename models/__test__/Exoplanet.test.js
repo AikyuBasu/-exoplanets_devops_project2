@@ -29,12 +29,15 @@ describe("Exoplanet add tests", () => {
     });
     
     it("should return false as no special character besides . and - are allowed", () => {
-        expect(
-            exoplanets.save({
-                uniqueName: "MADA./-",
-                hClass: "test",
-                discoveryYear: "1000",
-            })
-        ).toBe(false);
+        //arrange
+        const exoplanet = {
+            uniqueName: "MADA./-",
+            hClass: "test",
+            discoveryYear: "1000",
+        };
+        //act
+        const result = exoplanets.save(exoplanet);
+        //assert
+        expect(result).toBe(false);
     });
 });
