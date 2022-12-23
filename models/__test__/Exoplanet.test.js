@@ -19,13 +19,16 @@ describe("Exoplanet add tests", () => {
     });
     
     it("should fail as the exoplanet name contains at least one lowercase letter", () => {
-        expect(
-            exoplanets.save({
-                uniqueName: "TRAPPISt",
-                hClass: "test",
-                discoveryYear: "2010",
-            })
-        ).toBe(false);
+        //arrange
+        const exoplanet = {
+            uniqueName: 'TRAPPISt',
+            hClass: 'test',
+            discoveryYear: '2010', 
+        };
+        //act
+        const result = exoplanets.save(exoplanet);
+        //assert 
+        expect(result).toBe(false);
     });
     
     it("should return false as no special character besides . and - are allowed", () => {

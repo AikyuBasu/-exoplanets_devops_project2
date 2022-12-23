@@ -8,9 +8,11 @@ module.exports.list = () => exoplanetsTable;
 
 module.exports.save = (data) => {
     // check if name contains at least one lowercase letter
-    if (data.uniqueName.match(".*[a-z].*")) return false;
-    if (data.uniqueName.trim().length === 0) return false;
-    if (data.uniqueName.match(/[`!@#$%^&*()_+\=\[\]{};':"\\|,<>\/?~]/))
+    if (
+        data.uniqueName.match(".*[a-z].*") ||
+        data.uniqueName.trim().length === 0 ||
+        data.uniqueName.match(/[`!@#$%^&*()_+\=\[\]{};':"\\|,<>\/?~]/)
+    )
         return false;
     exoplanetsTable.push(data);
     return true;
