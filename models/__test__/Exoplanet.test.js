@@ -10,24 +10,21 @@ describe("Exoplanet add tests", () => {
     
     it("should fail as the uniqueName is empty", () => {
         givenExoplanet('','test','1000');
-        //act
-        result = exoplanets.save(exoplanet);
+        whenAddExoplanet(exoplanet);
         //assert
         expect(result).toBe(false);
     });
 
     it("should fail as the exoplanet name contains at least one lowercase letter", () => {
         givenExoplanet('TRAPPISt','test','2010');
-        //act
-        result = exoplanets.save(exoplanet);
+        whenAddExoplanet(exoplanet);
         //assert
         expect(result).toBe(false);
     });
 
     it("should return false as no special character besides . and - are allowed", () => {
         givenExoplanet('MADA./-','test','1000');
-        //act
-        result = exoplanets.save(exoplanet);
+        whenAddExoplanet(exoplanet);
         //assert
         expect(result).toBe(false);
     });
@@ -39,5 +36,10 @@ describe("Exoplanet add tests", () => {
             hClass,
             discoveryYear
         };
+    }
+
+    //act
+    function whenAddExoplanet(exoplanet){
+        result = exoplanets.save(exoplanet);
     }
 });
