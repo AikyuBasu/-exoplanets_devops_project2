@@ -7,7 +7,7 @@ test("pipeline-test", () => {
 describe("Exoplanet add tests", () => {
     let exoplanet;
     let result;
-    
+
     it("should fail as the uniqueName is empty", () => {
         givenExoplanet('','test','1000');
         whenAddExoplanet(exoplanet);
@@ -24,6 +24,12 @@ describe("Exoplanet add tests", () => {
         givenExoplanet('MADA./-','test','1000');
         whenAddExoplanet(exoplanet);
         assertResult(result, false);
+    });
+
+    it("should return true as the uniqueName is correct (all uppercase + only allowed special characters)", () => {
+        givenExoplanet('MADA-MADA.456','test','1000');
+        whenAddExoplanet(exoplanet);
+        assertResult(result, true);
     });
 
     //arrange
