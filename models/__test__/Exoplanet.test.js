@@ -1,38 +1,47 @@
-const exoplanets = require('../Exoplanet')
+const exoplanets = require("../Exoplanet");
 
-
-test('pipeline-test', () => {
+test("pipeline-test", () => {
     expect(0).toBe(0);
 });
 
+describe("Exoplanet add tests", () => {
+    let exoplanet;
+    let result;
+    
+    it("should fail as the uniqueName is empty", () => {
+        givenExoplanet('','test','1000');
+        whenAddExoplanet(exoplanet);
+        assertResult(result, false);
+    });
 
-test('no lowercase letter allowed for exoplanet uniqueName (only uppercase)', () => {
-    expect(
-        exoplanets.save({
-            uniqueName: "TRAPPISt",
-            hClass: "test",
-            discoveryYear: "2010",
-            })
-    ).toBe(false);
-});
+    it("should fail as the exoplanet name contains at least one lowercase letter", () => {
+        givenExoplanet('TRAPPISt','test','2010');
+        whenAddExoplanet(exoplanet);
+        assertResult(result, false);
+    });
 
-test('empty uniqueName', () => {
-    expect(
-        exoplanets.save({
-            uniqueName: '',
-            hClass: 'test',
-            discoveryYear: '1000',
+    it("should return false as no special character besides . and - are allowed", () => {
+        givenExoplanet('MADA./-','test','1000');
+        whenAddExoplanet(exoplanet);
+        assertResult(result, false);
+    });
 
-        })
-    ).toBe(false);
-});
+    //arrange
+    function givenExoplanet(uniqueName,hClass,discoveryYear){
+        exoplanet = {
+            uniqueName,
+            hClass,
+            discoveryYear
+        };
+    }
 
-test('no special charactere are allowed', () => {
-    expect(
-        exoplanets.save({
-            uniqueName: 'MADA./-',
-            hClass: 'test',
-            discoveryYear: '1000',
-        })
-    ).toBe(false);
+    //act
+    function whenAddExoplanet(exoplanet){
+        result = exoplanets.save(exoplanet);
+    }
+
+    //assert
+    function assertResult(result,expected){
+        expect(result).toBe(expected);
+}
 });
