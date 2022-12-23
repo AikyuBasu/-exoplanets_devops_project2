@@ -5,41 +5,44 @@ test("pipeline-test", () => {
 });
 
 describe("Exoplanet add tests", () => {
-    it('should fail as the uniqueName is empty', () => {  
+    let exoplanet;
+    let result;
+    
+    it("should fail as the uniqueName is empty", () => {
         //arrange
-        const exoplanet = {
-            uniqueName: '',
-            hClass: 'test',
-            discoveryYear: '1000', 
+        exoplanet = {
+            uniqueName: "",
+            hClass: "test",
+            discoveryYear: "1000",
         };
         //act
-        const result = exoplanets.save(exoplanet);
-        //assert 
+        result = exoplanets.save(exoplanet);
+        //assert
         expect(result).toBe(false);
     });
-    
+
     it("should fail as the exoplanet name contains at least one lowercase letter", () => {
         //arrange
-        const exoplanet = {
-            uniqueName: 'TRAPPISt',
-            hClass: 'test',
-            discoveryYear: '2010', 
+        exoplanet = {
+            uniqueName: "TRAPPISt",
+            hClass: "test",
+            discoveryYear: "2010",
         };
         //act
-        const result = exoplanets.save(exoplanet);
-        //assert 
+        result = exoplanets.save(exoplanet);
+        //assert
         expect(result).toBe(false);
     });
-    
+
     it("should return false as no special character besides . and - are allowed", () => {
         //arrange
-        const exoplanet = {
+        exoplanet = {
             uniqueName: "MADA./-",
             hClass: "test",
             discoveryYear: "1000",
         };
         //act
-        const result = exoplanets.save(exoplanet);
+        result = exoplanets.save(exoplanet);
         //assert
         expect(result).toBe(false);
     });
