@@ -9,12 +9,7 @@ describe("Exoplanet add tests", () => {
     let result;
     
     it("should fail as the uniqueName is empty", () => {
-        //arrange
-        exoplanet = {
-            uniqueName: "",
-            hClass: "test",
-            discoveryYear: "1000",
-        };
+        givenExoplanet('','test','1000');
         //act
         result = exoplanets.save(exoplanet);
         //assert
@@ -22,12 +17,7 @@ describe("Exoplanet add tests", () => {
     });
 
     it("should fail as the exoplanet name contains at least one lowercase letter", () => {
-        //arrange
-        exoplanet = {
-            uniqueName: "TRAPPISt",
-            hClass: "test",
-            discoveryYear: "2010",
-        };
+        givenExoplanet('TRAPPISt','test','2010');
         //act
         result = exoplanets.save(exoplanet);
         //assert
@@ -35,15 +25,19 @@ describe("Exoplanet add tests", () => {
     });
 
     it("should return false as no special character besides . and - are allowed", () => {
-        //arrange
-        exoplanet = {
-            uniqueName: "MADA./-",
-            hClass: "test",
-            discoveryYear: "1000",
-        };
+        givenExoplanet('MADA./-','test','1000');
         //act
         result = exoplanets.save(exoplanet);
         //assert
         expect(result).toBe(false);
     });
+
+    //arrange
+    function givenExoplanet(uniqueName,hClass,discoveryYear){
+        exoplanet = {
+            uniqueName,
+            hClass,
+            discoveryYear
+        };
+    }
 });
