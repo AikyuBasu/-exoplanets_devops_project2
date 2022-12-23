@@ -30,7 +30,7 @@ describe("Exoplanet add tests", () => {
     });
 
     it("should return true as the uniqueName is correct (all uppercase + only allowed special characters)", () => {
-        givenExoplanet('MADA-MADA.','test','1000');
+        givenExoplanet('MADA-MADA.456','test','1000');
         whenAddExoplanet(exoplanet);
         //assert
         expect(result).toBe(true);
